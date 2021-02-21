@@ -41,7 +41,7 @@ export class MeetingsComponent implements OnInit {
       date: new FormControl("", [Validators.required]),
       sujet: new FormControl("", [Validators.required]),
     });
-    this.currentUser = localStorage.getItem("currentUser");
+    this.currentUser = JSON.parse( localStorage.getItem("currentUser"));
     this.isAdmin = this.currentUser.role == 'admin';
 
   }

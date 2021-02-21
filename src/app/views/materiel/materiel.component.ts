@@ -46,7 +46,7 @@ export class MaterielComponent implements OnInit {
     this.basicForm = new FormGroup({
       name: new FormControl("", [Validators.required]),
     });
-    this.currentUser = localStorage.getItem("currentUser");
+    this.currentUser = JSON.parse( localStorage.getItem("currentUser"));
     this.isAdmin = this.currentUser.role == 'admin';
   }
   setMateriel(){

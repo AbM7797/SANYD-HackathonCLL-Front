@@ -48,7 +48,7 @@ export class CaisseComponent implements OnInit {
       typeTransaction: new FormControl("", [Validators.required]),
       date: new FormControl(),
     });
-    this.currentUser = localStorage.getItem("currentUser");
+    this.currentUser = JSON.parse( localStorage.getItem("currentUser"));
     console.log(this.currentUser);
     this.isAdmin = this.currentUser.role == 'admin';
   }

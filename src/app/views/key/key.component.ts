@@ -50,7 +50,7 @@ export class KeyComponent implements OnInit {
       this.members = users._embedded.users;
       console.log(this.members);
     })
-    this.currentUser = localStorage.getItem("currentUser");
+    this.currentUser = JSON.parse( localStorage.getItem("currentUser"));
     this.isAdmin = this.currentUser.role == 'admin';
   }
   setKey(){

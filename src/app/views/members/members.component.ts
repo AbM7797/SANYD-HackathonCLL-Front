@@ -64,7 +64,7 @@ export class MembersComponent implements OnInit {
       confirmPassword: confirmPassword,
       role: new FormControl("", [Validators.required]),
     });
-    this.currentUser = localStorage.getItem("currentUser");
+    this.currentUser = JSON.parse( localStorage.getItem("currentUser"));
     this.isAdmin = this.currentUser.role == 'admin';
 
   }
