@@ -27,7 +27,7 @@ export class MeetingsComponent implements OnInit {
   submitted = false;
   type;
   currentUser;
-
+  isAdmin = false;
   displayedColumns: string[] = ['id', 'Sujet', 'Date'];
   dataSource: MatTableDataSource<Meeting>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -42,6 +42,7 @@ export class MeetingsComponent implements OnInit {
       sujet: new FormControl("", [Validators.required]),
     });
     this.currentUser = localStorage.getItem("currentUser");
+    this.isAdmin = this.currentUser.role == 'admin';
 
   }
   setMeetings(){

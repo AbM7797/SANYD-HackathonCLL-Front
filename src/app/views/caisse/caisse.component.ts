@@ -32,6 +32,7 @@ export class CaisseComponent implements OnInit {
   show  = false;
   type;
   currentUser;
+  isAdmin = false;
   displayedColumns: string[] = ['id', 'Source', 'Montant','TypeTransaction','Date'];
   dataSource: MatTableDataSource<Caisse>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -48,6 +49,8 @@ export class CaisseComponent implements OnInit {
       date: new FormControl(),
     });
     this.currentUser = localStorage.getItem("currentUser");
+    console.log(this.currentUser);
+    this.isAdmin = this.currentUser.role == 'admin';
   }
   setCaisse(){
     this.caisseService.getAllCaisses().subscribe(caisses=>{

@@ -32,7 +32,7 @@ export class KeyComponent implements OnInit {
   show  = false;
   type;
   currentUser;
-
+  isAdmin = false;
   displayedColumns: string[] = ['id','FirstName','LastName','Phone'];
   dataSource: MatTableDataSource<Key>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -51,7 +51,7 @@ export class KeyComponent implements OnInit {
       console.log(this.members);
     })
     this.currentUser = localStorage.getItem("currentUser");
-
+    this.isAdmin = this.currentUser.role == 'admin';
   }
   setKey(){
     this.keyService.getAllKeys().subscribe(keys=>{

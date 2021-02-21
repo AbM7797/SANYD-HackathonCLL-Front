@@ -33,7 +33,7 @@ export class MembersComponent implements OnInit {
   submitted = false;
   type;
   currentUser;
-
+  isAdmin = false;
   displayedColumns: string[] = ['id', 'FirstName', 'LastName','Email','Status','Phone'];
   dataSource: MatTableDataSource<Member>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -65,6 +65,7 @@ export class MembersComponent implements OnInit {
       role: new FormControl("", [Validators.required]),
     });
     this.currentUser = localStorage.getItem("currentUser");
+    this.isAdmin = this.currentUser.role == 'admin';
 
   }
   setMembers(){
