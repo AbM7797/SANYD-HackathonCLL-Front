@@ -37,103 +37,39 @@ export class NavigationService {
       state: "dashboard/analytics"
     },
     {
-      name: "PAGES",
-      type: "separator"
-    },
-    {
-      name: "Sessions",
-      type: "dropDown",
-      tooltip: "Pages",
-      icon: "how_to_reg",
-      state: "sessions",
-      badges: [{color: 'primary', value: '6'}],
-      sub: [
-        { name: "Sign up", state: "signup" },
-        { name: "Sign in", state: "signin" },
-        { name: "Forgot", state: "forgot-password" },
-        { name: "Lock screen", state: "lockscreen" },
-        { name: "Not Found", state: "404" },
-        { name: "Error", state: "error" }
-      ]
-    },
-    {
-      name: "Blank Page",
+      name: "Materiel",
       type: "link",
-      icon: "check_box_outline_blank",
-      state: "pages/blank"
+      tooltip: "Materiel",
+      icon: "dashboard",
+      state: "materiel"
     },
     {
-      name: "COMPONENTS",
-      type: "separator"
-    },
-    {
-      name: "Forms",
-      type: "dropDown",
-      tooltip: "Forms",
-      icon: "description",
-      state: "forms",
-      sub: [
-        { name: "Basic", state: "basic" },
-        { name: "Editor", state: "editor" },
-        { name: "Upload", state: "upload" },
-        { name: "Wizard", state: "wizard" }
-      ]
-    },
-    {
-      name: "Data Table",
+      name: "Key",
       type: "link",
-      tooltip: "Tables",
-      icon: "format_line_spacing",
-      state: "tables/mat-table"
+      tooltip: "Key",
+      icon: "dashboard",
+      state: "key"
     },
     {
-      name: "Material Kit",
+      name: "Meetings Management",
       type: "link",
-      icon: "move_to_inbox",
-      state: "mat-kits"
+      tooltip: "Meetings Management",
+      icon: "dashboard",
+      state: "meetings"
     },
     {
-      name: "OTHERS",
-      type: "separator"
-    },
-    {
-      name: "Icons",
+      name: "Members",
       type: "link",
-      tooltip: "Material Icons",
-      icon: "store",
-      state: "icons"
+      tooltip: "Members",
+      icon: "dashboard",
+      state: "members"
     },
     {
-      name: "Multi Level",
-      type: "dropDown",
-      tooltip: "Multi Level",
-      icon: "format_align_center",
-      state: "",
-      sub: [
-        {
-          name: "Level Two",
-          type: "dropDown",
-          state: "fake-1",
-          sub: [
-            { name: "Level Three", state: "fake-2" },
-            { name: "Level Three", state: "fake-3" }
-          ]
-        },
-        { name: "Level Two", state: "fake-4" },
-        { name: "Level Two", state: "fake-5" }
-      ]
-    },
-    {
-      name: "Documentation",
-      type: "extLink",
-      icon: "library_books",
-      state: "http://demos.ui-lib.com/matx-angular-doc/"
-    },
-    {
-      name: "Upgrade to PRO",
-      type: "extLink",
-      icon: "present_to_all",
-      state: "http://matx-angular.ui-lib.com"
+      name: "Caisse",
+      type: "link",
+      tooltip: "Caisse",
+      icon: "dashboard",
+      state: "caisse"
     }
   ];
 

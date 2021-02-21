@@ -1,0 +1,127 @@
+<mat-card class="p-0">
+    <mat-card-title class="">
+        <div class="card-title-text">Form validation</div>
+        <mat-divider></mat-divider>
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="basicForm" (ngSubmit)="onSubmit()">
+            <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="50" class="pr-1">
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input
+                                    matInput
+                                    name="source"
+                                    formControlName="source"
+                                    placeholder="Source (Min Length: 4, Max Length: 9)"
+                                    value="">
+                        </mat-form-field>
+                        <small
+                                *ngIf="basicForm.controls['source'].hasError('minlength') && basicForm.controls['source'].touched"
+                                class="form-error-msg"> Source require at least {{basicForm.controls['source'].errors.minlength.requiredLength}} characters </small>
+                        <small
+                                *ngIf="basicForm.controls['source'].hasError('maxlength') && basicForm.controls['source'].touched"
+                                class="form-error-msg"> Source can not contain more than {{basicForm.controls['source'].errors.maxlength.requiredLength}} characters </small>
+                    </div>
+
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input
+                                    matInput
+                                    name="montant"
+                                    formControlName="montant"
+                                    placeholder="Montant"
+                                    type="number">
+                        </mat-form-field>
+                        <small
+                                *ngIf="basicForm.controls['montant'].hasError('required') && basicForm.controls['montant'].touched"
+                                class="form-error-msg"> Montant is required </small>
+                    </div>
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input
+                                    matInput
+                                    name="typeTransaction"
+                                    formControlName="typeTransaction"
+                                    placeholder="Type Transaction"
+                                    value="">
+                        </mat-form-field>
+                        <small
+                                *ngIf="basicForm.controls['typeTransaction'].hasError('required') && basicForm.controls['typeTransaction'].touched"
+                                class="form-error-msg"> Type Transaction is required </small>
+                    </div>
+                    <div class="pb-1">
+                        <mat-form-field class="full-width">
+                            <input
+                                    matInput
+                                    name="date"
+                                    formControlName="date"
+                                    placeholder="Date"
+                                    [matDatepicker]="appDatepicker">
+
+                            <mat-datepicker-toggle matSuffix [for]="appDatepicker"></mat-datepicker-toggle>
+                        </mat-form-field>
+                        <mat-datepicker #appDatepicker></mat-datepicker>
+                    </div>
+                </div>
+            </div>
+            <button
+                    mat-raised-button
+                    color="primary"
+                    [disabled]="basicForm.invalid">Submit</button>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<div>
+    <mat-form-field>
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+    </mat-form-field>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="Source">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Source </th>
+                <td mat-cell *matCellDef="let row"> {{row.source}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Montant">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Montant </th>
+                <td mat-cell *matCellDef="let row"> {{row.montant}}</td>
+            </ng-container>
+            <ng-container matColumnDef="TypeTransaction">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Type Transaction </th>
+                <td mat-cell *matCellDef="let row"> {{row.typeTransaction}}</td>
+            </ng-container>
+            <ng-container matColumnDef="Date">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Date </th>
+                <td mat-cell *matCellDef="let row"> {{row.date}}</td>
+            </ng-container>
+            <ng-container matColumnDef="supprimer">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>  </th>
+                <td mat-cell *matCellDef="let row">
+                    <button class="btn btn-danger" (click)="supprimer(row.id)">Supprimer</button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+</div>

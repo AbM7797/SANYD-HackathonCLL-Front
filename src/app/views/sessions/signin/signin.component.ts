@@ -12,6 +12,7 @@ import { AppLoaderService } from "app/shared/services/app-loader/app-loader.serv
 import { Router, ActivatedRoute } from "@angular/router";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
+import {MembersService} from "../../../shared/services/members.service";
 
 @Component({
   selector: "app-signin",
@@ -30,6 +31,7 @@ export class SigninComponent implements OnInit, AfterViewInit {
   constructor(
     private jwtAuth: JwtAuthService,
     private matxLoader: AppLoaderService,
+    private membersService: MembersService,
     private router: Router,
     private route: ActivatedRoute
   ) {
@@ -38,8 +40,8 @@ export class SigninComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.signinForm = new FormGroup({
-      username: new FormControl('Watson', Validators.required),
-      password: new FormControl('12345678', Validators.required),
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
       rememberMe: new FormControl(true)
     });
 
@@ -62,14 +64,14 @@ export class SigninComponent implements OnInit, AfterViewInit {
   signin() {
     const signinData = this.signinForm.value
     this.loading = true;
-    this.jwtAuth.signin(signinData.username, signinData.password)
-    .subscribe(response => {
+    this.membersService.authenticate(signinData.username,signinData.password).subscribe(response=>{
       this.loading = false;
       this.router.navigateByUrl(this.return);
-    }, err => {
+    },err =>{
       this.loading = false;
       this.errorMsg = err.message;
     })
+
   }
 
   autoSignIn() {    

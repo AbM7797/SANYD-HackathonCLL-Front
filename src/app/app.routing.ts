@@ -14,7 +14,7 @@ export const rootRouterConfig: Routes = [
     component: AuthLayoutComponent,
     children: [
       {
-        path: "sessions",
+          path: "sessions",
         loadChildren: () =>
           import("./views/sessions/sessions.module").then(
             (m) => m.SessionsModule
@@ -26,7 +26,6 @@ export const rootRouterConfig: Routes = [
   {
     path: "",
     component: AdminLayoutComponent,
-    canActivate: [AuthGuard],
     children: [
       {
         path: "dashboard",
@@ -36,54 +35,30 @@ export const rootRouterConfig: Routes = [
           ),
       },
       {
-        path: "mat-kits",
-        loadChildren: () =>
-          import("./views/material-components/material-components.module").then(
-            (m) => m.MaterialComponentsModule
-          ),
-        data: { title: "Material Coponents", breadcrumb: "Material Coponents" },
+        path: "members",
+        loadChildren:() =>
+            import("./views/members/members.module").then(m=>m.MembersModule)
       },
       {
-        path: "pages",
-        loadChildren: () =>
-          import("./views/others/others.module").then((m) => m.OthersModule),
-        data: { title: "Pages", breadcrumb: "Pages" },
+        path: "caisse",
+        loadChildren:()=>
+            import("./views/caisse/caisse.module").then(m=>m.CaisseModule)
       },
       {
-        path: "tables",
+        path: "materiel",
         loadChildren: () =>
-          import("./views/tables/tables.module").then((m) => m.TablesModule),
-        data: { title: "Tables", breadcrumb: "Tables" },
+            import("./views/materiel/materiel.module").then(m=>m.MaterielModule)
       },
       {
-        path: "forms",
+        path:"key",
         loadChildren: () =>
-          import("./views/forms/forms.module").then((m) => m.AppFormsModule),
-        data: { title: "Forms", breadcrumb: "Forms" },
-      },
-
-      {
-        path: "search",
-        loadChildren: () =>
-          import("./views/search-view/search-view.module").then(
-            (m) => m.SearchViewModule
-          ),
-      },
-
-      {
-        path: "orders",
-        loadChildren: () =>
-          import("./views/order/order.module").then((m) => m.OrderModule),
-        data: { title: "Orders", breadcrumb: "Orders" },
+            import("./views/key/key.module").then(m=>m.KeyModule)
       },
       {
-        path: "icons",
+        path: "meetings",
         loadChildren: () =>
-          import("./views/mat-icons/mat-icons.module").then(
-            (m) => m.MatIconsModule
-          ),
-        data: { title: "Icons", breadcrumb: "Mat icons" },
-      },
+            import("./views/meetings/meetings.module").then(m=>m.MeetingsModule)
+      }
     ],
   },
   {
