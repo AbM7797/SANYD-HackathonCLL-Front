@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter, Input, Output, Renderer2 } from '@angu
 import { ThemeService } from '../../services/theme.service';
 import { LayoutService } from '../../services/layout.service';
 import { JwtAuthService } from 'app/shared/services/auth/jwt-auth.service';
+import {MembersService} from "../../services/members.service";
 
 @Component({
   selector: 'app-header-side',
@@ -26,7 +27,7 @@ export class HeaderSideComponent implements OnInit {
     private themeService: ThemeService,
     private layout: LayoutService,
     private renderer: Renderer2,
-    public jwtAuth: JwtAuthService
+    public jwtAuth: MembersService
   ) {}
   ngOnInit() {
     this.matxThemes = this.themeService.matxThemes;

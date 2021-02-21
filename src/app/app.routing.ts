@@ -33,31 +33,43 @@ export const rootRouterConfig: Routes = [
           import("./views/dashboard/dashboard.module").then(
             (m) => m.DashboardModule
           ),
+        canLoad:[AuthGuard]
       },
       {
         path: "members",
         loadChildren:() =>
-            import("./views/members/members.module").then(m=>m.MembersModule)
+            import("./views/members/members.module").then(m=>m.MembersModule),
+        canLoad:[AuthGuard]
+
       },
+
       {
         path: "caisse",
         loadChildren:()=>
-            import("./views/caisse/caisse.module").then(m=>m.CaisseModule)
+            import("./views/caisse/caisse.module").then(m=>m.CaisseModule),
+        canLoad:[AuthGuard]
+
       },
       {
         path: "materiel",
         loadChildren: () =>
-            import("./views/materiel/materiel.module").then(m=>m.MaterielModule)
+            import("./views/materiel/materiel.module").then(m=>m.MaterielModule),
+        canLoad:[AuthGuard]
+
       },
       {
         path:"key",
         loadChildren: () =>
-            import("./views/key/key.module").then(m=>m.KeyModule)
+            import("./views/key/key.module").then(m=>m.KeyModule),
+        canLoad:[AuthGuard]
+
       },
       {
         path: "meetings",
         loadChildren: () =>
-            import("./views/meetings/meetings.module").then(m=>m.MeetingsModule)
+            import("./views/meetings/meetings.module").then(m=>m.MeetingsModule),
+        canLoad:[AuthGuard]
+
       }
     ],
   },

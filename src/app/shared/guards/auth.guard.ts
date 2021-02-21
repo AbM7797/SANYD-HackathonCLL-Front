@@ -3,14 +3,16 @@ import {
   CanActivate,
   ActivatedRouteSnapshot,
   RouterStateSnapshot,
-  Router,
+  Router, Route, UrlSegment,
 } from "@angular/router";
 import { JwtAuthService } from "../services/auth/jwt-auth.service";
+import {Observable} from "rxjs";
+import {MembersService} from "../services/members.service";
 
 @Injectable()
 export class AuthGuard implements CanActivate {
 
-  constructor(private router: Router, private jwtAuth: JwtAuthService) {}
+  constructor(private router: Router,private membersService: MembersService, private jwtAuth: JwtAuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     if (this.jwtAuth.isLoggedIn()) {
@@ -24,4 +26,14 @@ export class AuthGuard implements CanActivate {
       return false;
     }
   }
-}
+  canLoad(
+      route: Route,
+      segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
+    const currentUser = this.membersService.currentUserValue;
+    if(currentUser){
+      return true;
+    }
+    this.router.navigate(['/sessions/signin']);
+    return false;
+    return true;
+  }}

@@ -38,7 +38,7 @@ export class MembersService {
   logOut() {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
-    this.router.navigateByUrl('/auth/signin');
+    this.router.navigateByUrl('/sessions/signin');
   }
   authenticate(username,password) {
     return this.httpClient.post<any>(environment.apiURL + '/login', {username, password}).pipe(map(user =>{
