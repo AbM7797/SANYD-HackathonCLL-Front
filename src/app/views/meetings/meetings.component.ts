@@ -26,6 +26,8 @@ export class MeetingsComponent implements OnInit {
   show  = false;
   submitted = false;
   type;
+  currentUser;
+
   displayedColumns: string[] = ['id', 'Sujet', 'Date'];
   dataSource: MatTableDataSource<Meeting>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -39,6 +41,8 @@ export class MeetingsComponent implements OnInit {
       date: new FormControl("", [Validators.required]),
       sujet: new FormControl("", [Validators.required]),
     });
+    this.currentUser = localStorage.getItem("currentUser");
+
   }
   setMeetings(){
     this.meetingsService.getAllMeetings().subscribe(meetings=>{
