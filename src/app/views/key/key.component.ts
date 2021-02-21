@@ -31,6 +31,8 @@ export class KeyComponent implements OnInit {
   submitted= false;
   show  = false;
   type;
+  currentUser;
+
   displayedColumns: string[] = ['id','FirstName','LastName','Phone'];
   dataSource: MatTableDataSource<Key>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -48,6 +50,8 @@ export class KeyComponent implements OnInit {
       this.members = users._embedded.users;
       console.log(this.members);
     })
+    this.currentUser = localStorage.getItem("currentUser");
+
   }
   setKey(){
     this.keyService.getAllKeys().subscribe(keys=>{

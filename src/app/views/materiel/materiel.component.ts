@@ -26,6 +26,8 @@ export class MaterielComponent implements OnInit {
   show  = false;
   submitted = false;
   type;
+  currentUser;
+
   displayedColumns: string[] = ['id', 'Name'];
   dataSource: MatTableDataSource<Materiel>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -44,6 +46,8 @@ export class MaterielComponent implements OnInit {
     this.basicForm = new FormGroup({
       name: new FormControl("", [Validators.required]),
     });
+    this.currentUser = localStorage.getItem("currentUser");
+
   }
   setMateriel(){
     this.materielService.getAllMateriels().subscribe(materiels=>{

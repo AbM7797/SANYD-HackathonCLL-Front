@@ -31,6 +31,7 @@ export class CaisseComponent implements OnInit {
   submitted = false;
   show  = false;
   type;
+  currentUser;
   displayedColumns: string[] = ['id', 'Source', 'Montant','TypeTransaction','Date'];
   dataSource: MatTableDataSource<Caisse>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -46,6 +47,7 @@ export class CaisseComponent implements OnInit {
       typeTransaction: new FormControl("", [Validators.required]),
       date: new FormControl(),
     });
+    this.currentUser = localStorage.getItem("currentUser");
   }
   setCaisse(){
     this.caisseService.getAllCaisses().subscribe(caisses=>{
@@ -54,6 +56,9 @@ export class CaisseComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     })
+  }
+  ngAfterViewInit() {
+    this.setCaisse();
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

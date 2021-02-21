@@ -32,6 +32,8 @@ export class MembersComponent implements OnInit {
   show  = false;
   submitted = false;
   type;
+  currentUser;
+
   displayedColumns: string[] = ['id', 'FirstName', 'LastName','Email','Status','Phone'];
   dataSource: MatTableDataSource<Member>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -62,6 +64,8 @@ export class MembersComponent implements OnInit {
       confirmPassword: confirmPassword,
       role: new FormControl("", [Validators.required]),
     });
+    this.currentUser = localStorage.getItem("currentUser");
+
   }
   setMembers(){
     this.membersService.getAllUsers().subscribe(users=>{
